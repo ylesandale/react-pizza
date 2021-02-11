@@ -1,4 +1,4 @@
-/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
 /* eslint-disable react/prop-types */
 
 import React, { useState } from "react";
@@ -12,14 +12,14 @@ function Categories({ items }) {
     <div className="categories">
       <ul>
         <li
-          className={activeItem === null && "active"}
+          className={activeItem === null ? "active" : ""}
           onClick={() => onSelectItem(null)}
         >
           Все
         </li>
         {items?.map((name, index) => (
           <li
-            className={activeItem === index && "active"}
+            className={activeItem === index ? "active" : ""}
             onClick={() => onSelectItem(index)}
             key={`${name}__${index}`}
           >
