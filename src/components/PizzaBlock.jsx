@@ -72,7 +72,6 @@ function PizzaBlock({ name, price, imageUrl, types, sizes }) {
     </div>
   );
 }
-console.log(PropTypes);
 
 PizzaBlock.propTypes = {
   name: PropTypes.string,

@@ -1,17 +1,21 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-undef */
+import React, { useEffect } from "react";
 import axios from "axios";
+import { Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import { Header } from "./components";
 import { Home } from "./pages";
 import { Cart } from "./pages";
-
-import { Route } from "react-router-dom";
+import { setPizzas } from "./redux/actions/pizzas";
 
 function App() {
-  const [pizzas, setPizzas] = useState([]);
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios.get("http://localhost:3000/db.json").then(({ data }) => {
-      setPizzas(data.pizzas);
+    axios.get("http://localhost:3001/pizzas").then(({ data }) => {
+      dispatch(setPizzas(data));
     });
   }, []);
 
@@ -19,7 +23,7 @@ function App() {
     <div className="wrapper">
       <Header />
       <div className="content">
-        <Route exact path="/" render={() => <Home items={pizzas} />} />
+        <Route exact path="/" component={Home} />
         <Route exact path="/cart" component={Cart} />
       </div>
     </div>

@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 
-function SortPopup({ items }) {
-  const [visiblePopup, setVisiblePopup] = useState(false);
-  const [activeItem, setActiveItem] = useState(0);
-  const sortRef = useRef();
+const SortPopup = React.memo(function SortPopup({ items }) {
+  const [visiblePopup, setVisiblePopup] = React.useState(false);
+  const [activeItem, setActiveItem] = React.useState(0);
+  const sortRef = React.useRef();
 
-  const activeLabel = items[activeItem];
+  const activeLabel = items[activeItem].name;
 
   const toggleVisiblePopup = () => {
     setVisiblePopup(!visiblePopup);
@@ -23,7 +23,7 @@ function SortPopup({ items }) {
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.body.addEventListener("click", handleOutsideClick);
   }, []);
 
@@ -49,13 +49,13 @@ function SortPopup({ items }) {
       {visiblePopup && (
         <div className="sort__popup">
           <ul>
-            {items.map((name, index) => (
+            {items.map((obj, index) => (
               <li
                 onClick={() => onSelectItem(index)}
                 className={activeItem === index ? "active" : ""}
                 key={index}
               >
-                {name}
+                {obj.name}
               </li>
             ))}
           </ul>
@@ -63,6 +63,6 @@ function SortPopup({ items }) {
       )}
     </div>
   );
-}
+});
 
 export default SortPopup;
