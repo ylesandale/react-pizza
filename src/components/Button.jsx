@@ -2,9 +2,16 @@
 
 import classNames from "classnames";
 
-function Button({ className, children }) {
+function Button({ onClick, className, children, outline }) {
   return (
-    <button className={classNames("button", className)}>{children}</button>
+    <button
+      onClick={onClick}
+      className={classNames("button", className, {
+        "button--outline": outline,
+      })}
+    >
+      {children}
+    </button>
   );
 }
 

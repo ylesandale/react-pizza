@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const initialState = {
   category: null,
   sortBy: {
